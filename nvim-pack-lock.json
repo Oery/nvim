@@ -1,0 +1,36 @@
+{
+  "plugins": {
+    "autoclose.nvim": [],
+    "blink.cmp": {
+      "version": "'v1.6.0'"
+    },
+    "conform.nvim": [],
+    "cord.nvim": [],
+    "crates.nvim": [],
+    "guess-indent.nvim": [],
+    "live-rename.nvim": [],
+    "lualine.nvim": [],
+    "neo-tree.nvim": [],
+    "nui.nvim": [],
+    "nvim-cokeline": [],
+    "nvim-lspconfig": [],
+    "nvim-rooter.lua": [],
+    "nvim-treesitter": [],
+    "nvim-ts-autotag": [],
+    "nvim-web-devicons": [],
+    "oxocarbon.nvim": [],
+    "plenary.nvim": [],
+    "renoir": [],
+    "snacks.nvim": [],
+    "telescope-repo.nvim": [],
+    "telescope.nvim": [],
+    "tiny-inline-diagnostic.nvim": [],
+    "todo-comments.nvim": [],
+    "tokyonight.nvim": [],
+    "trouble.nvim": [],
+    "vesper.nvim": [],
+    "vim-wakatime": [],
+    "which-key.nvim": [],
+    "zoxide.vim": []
+  }
+}
