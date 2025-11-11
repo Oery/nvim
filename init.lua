@@ -69,6 +69,7 @@ vim.pack.add({
 	{ src = "https://github.com/saghen/blink.cmp",                          version = "v1.6.0" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/rachartier/tiny-inline-diagnostic.nvim.git" },
+	{ src = "https://github.com/j-hui/fidget.nvim" },
 
 	-- Navigation
 	{ src = "https://github.com/nvim-neo-tree/neo-tree.nvim" },
@@ -254,6 +255,8 @@ require('telescope').setup({
 	},
 })
 require('telescope').load_extension('repo')
+
+require('fidget').setup()
 
 require('blink.cmp').setup {
 	fuzzy = { implementation = 'prefer_rust_with_warning' }
