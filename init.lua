@@ -78,6 +78,7 @@ vim.pack.add({
 	{ src = "https://github.com/notjedi/nvim-rooter.lua" },
 	{ src = "https://github.com/nanotee/zoxide.vim" },
 	{ src = "https://github.com/m4xshen/autoclose.nvim" },
+	{ src = "https://github.com/windwp/nvim-autopairs" },
 	{ src = "https://github.com/willothy/nvim-cokeline" },
 	{ src = "https://github.com/folke/which-key.nvim" },
 	{ src = "https://github.com/folke/todo-comments.nvim" },
@@ -203,7 +204,7 @@ require('neo-tree').setup(neotree_config)
 require('guess-indent').setup({})
 require("nvim-ts-autotag").setup()
 require("crates").setup({})
-require("autoclose").setup()
+require("nvim-autopairs").setup()
 require("live-rename").setup()
 require('lualine').setup { globalstatus = true }
 
