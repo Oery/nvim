@@ -82,6 +82,7 @@ vim.pack.add({
 	{ src = "https://github.com/folke/which-key.nvim" },
 	{ src = "https://github.com/folke/todo-comments.nvim" },
 	{ src = "https://github.com/windwp/nvim-ts-autotag" },
+	{ src = "https://github.com/abecodes/tabout.nvim" },
 
 	-- Theming
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
@@ -306,6 +307,10 @@ require('nvim-treesitter.configs').setup({
 	auto_install = true,
 	highlight = { enable = true },
 })
+
+require('tabout').setup {
+	ignore_beginning = true,
+}
 
 -- Theming
 
