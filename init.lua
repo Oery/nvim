@@ -329,7 +329,7 @@ require('renoir').setup {
 
 vim.cmd(':colorscheme renoir')
 
-# 42 Configuration
+-- 42 Configuration
 vim.g.user42 = vim.env.GIT_AUTHOR_NAME;
 vim.g.mail42 = vim.env.GIT_AUTHOR_EMAIL;
 
