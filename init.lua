@@ -267,7 +267,10 @@ require('blink.cmp').setup {
 }
 
 require('conform').setup {
-	formatters_by_ft = {},
+	formatters_by_ft = {
+		c   = { lsp_format = "never" },
+		cpp = { lsp_format = "never" },
+	},
 	format_on_save = {
 		timeout_ms = 500,
 		lsp_format = "fallback",
@@ -290,6 +293,7 @@ vim.lsp.enable("qmlls")
 vim.lsp.enable("tsgo")
 vim.lsp.enable("biome")
 vim.lsp.enable('csharp_ls')
+vim.lsp.enable('clangd')
 
 vim.lsp.enable('rust_analyzer')
 vim.lsp.config('rust_analyzer', {
