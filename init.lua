@@ -94,7 +94,7 @@ vim.pack.add({
 	{ src = "https://github.com/folke/tokyonight.nvim" },
 	{ src = "https://github.com/nyoom-engineering/oxocarbon.nvim" },
 	{ src = "https://github.com/datsfilipe/vesper.nvim" },
-	{ src = "./renoir" },
+	{ src = "https://github.com/oery/renoir.nvim" },
 
 	-- Tracking
 	{ src = "https://github.com/vyfor/cord.nvim" },
