@@ -70,6 +70,7 @@ vim.pack.add({
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/rachartier/tiny-inline-diagnostic.nvim.git" },
 	{ src = "https://github.com/j-hui/fidget.nvim" },
+	{ src = "https://github.com/Oery/42norm.nvim" },
 
 	-- Navigation
 	{ src = "https://github.com/nvim-neo-tree/neo-tree.nvim" },
@@ -327,3 +328,16 @@ require('renoir').setup {
 }
 
 vim.cmd(':colorscheme renoir')
+
+# 42 Configuration
+vim.g.user42 = vim.env.GIT_AUTHOR_NAME;
+vim.g.mail42 = vim.env.GIT_AUTHOR_EMAIL;
+
+if vim.env.name == "42-env" then
+	require('42norm').setup {
+		format_on_save = false,
+		header_on_save = true,
+		linter_on_change = true,
+		ignore = { },
+	}
+end
