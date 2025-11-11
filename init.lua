@@ -261,7 +261,9 @@ require('telescope').load_extension('repo')
 require('fidget').setup()
 
 require('blink.cmp').setup {
-	fuzzy = { implementation = 'prefer_rust_with_warning' }
+	fuzzy = { implementation = 'prefer_rust_with_warning' },
+	sources = { default = { 'lsp', 'path', 'snippets' } },
+	completion = { menu = { auto_show = false } },
 }
 
 require('conform').setup {
