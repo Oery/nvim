@@ -96,7 +96,7 @@ vim.pack.add({
 	{ src = "https://github.com/folke/tokyonight.nvim" },
 	{ src = "https://github.com/nyoom-engineering/oxocarbon.nvim" },
 	{ src = "https://github.com/datsfilipe/vesper.nvim" },
-	{ src = "https://github.com/oery/renoir.nvim" },
+	{ src = "https://github.com/oery/shade.nvim" },
 
 	-- Tracking
 	{ src = "https://github.com/vyfor/cord.nvim" },
@@ -322,12 +322,12 @@ require('tabout').setup {
 
 -- Theming
 
-require('renoir').setup {
+require('shade').setup {
 	theme = 'dark',
 	transparent = true,
 }
 
-vim.cmd(':colorscheme renoir')
+vim.cmd(':colorscheme shade')
 
 -- 42 Configuration
 vim.g.user42 = vim.env.GIT_AUTHOR_NAME;
