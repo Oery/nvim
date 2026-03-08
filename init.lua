@@ -295,6 +295,7 @@ vim.lsp.enable("tsgo")
 vim.lsp.enable("biome")
 vim.lsp.enable('csharp_ls')
 vim.lsp.enable('clangd')
+vim.lsp.enable("nil_ls")
 
 vim.lsp.enable('rust_analyzer')
 vim.lsp.config('rust_analyzer', {
