@@ -1,12 +1,14 @@
 vim.pack.add({
 	{ src = "https://github.com/mfussenegger/nvim-dap" },
 	{ src = "https://github.com/rcarriga/nvim-dap-ui" },
+	{ src = "https://github.com/igorlfs/nvim-dap-view" },
 	{ src = "https://github.com/nvim-neotest/nvim-nio" },
 	{ src = "https://github.com/theHamsta/nvim-dap-virtual-text" },
 })
 
 local dap = require("dap")
 local dvt = require("nvim-dap-virtual-text")
+local dap_view = require("dap-view")
 
 dap.defaults.fallback.external_terminal = {
 	command = "ghostty",
@@ -18,6 +20,8 @@ dap.listeners.after.launch["resize-dap-term"] = function(_, _)
 end
 
 dvt.setup({})
+
+dap_view.setup({})
 
 dap.adapters.codelldb = require("debug.adapters.codelldb")
 dap.adapters.debugpy = {
