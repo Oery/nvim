@@ -36,7 +36,13 @@ neotree.setup({
 	},
 	filesystem = {
 		group_empty_dirs = true,
+		filtered_items = { show_hidden_count = false },
+		always_show = {
+			".gitignore",
+		},
+		async_directory_scan = "never"
 	},
+	follow_current_file = { enabled = true },
 	sort_function = function(a, b)
 		if a.type ~= b.type then
 			return a.type < b.type
