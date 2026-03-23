@@ -12,7 +12,14 @@ local top_set = {
 
 local function is_top(path)
 	local name = path:match("([^/]+)$")
-	return top_set[name] or false
+	if top_set[name] then
+		return 3
+	elseif name:match("%.h$") then
+		return 2
+	elseif name:match("%.new%.c$") then
+		return 1
+	end
+	return 0
 end
 
 neotree.setup({
@@ -39,9 +46,9 @@ neotree.setup({
 		local b_top = is_top(b.path)
 
 		if a_top ~= b_top then
-			return a_top
+			return a_top > b_top
 		end
 
 		return a.path < b.path
-	end
+	end,
 })
