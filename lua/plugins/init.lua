@@ -74,6 +74,9 @@ require("plugins.qol.autoclose")
 require("plugins.tracking.cord")
 require("plugins.tracking.wakatime")
 
+-- leetcode
+require("plugins.leetcode")
+
 if vim.env.name == "42-env" then
 	-- 42 norm
 	require("plugins.42norm")
