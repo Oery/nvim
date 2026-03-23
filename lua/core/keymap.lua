@@ -74,19 +74,44 @@ end, { desc = "Close current buffer" })
 -- debugging / dap
 local dap = require("dap")
 
-keymap("n", "<leader>q",
+keymap("n", "<leader>1",
 	dap.continue,
 	{ desc = "Continue" }
 )
 
-keymap("n", "<leader>w",
+keymap("n", "<leader>2",
 	dap.toggle_breakpoint,
 	{ desc = "Toggle Breakpoint" }
 )
 
-keymap("n", "<leader>dc",
+keymap("n", "<leader>3",
 	dap.run_to_cursor,
 	{ desc = "Run to Cursor" }
+)
+
+keymap("n", "<leader>4",
+	dap.step_into,
+	{ desc = "Step Into" }
+)
+
+keymap("n", "<leader>5",
+	dap.step_over,
+	{ desc = "Step Over" }
+)
+
+keymap("n", "<leader>6",
+	dap.step_out,
+	{ desc = "Step Out" }
+)
+
+keymap("n", "<leader>-",
+	dap.restart,
+	{ desc = "Restart" }
+)
+
+keymap("n", "<leader>=",
+	dap.terminate,
+	{ desc = "Terminate" }
 )
 
 
