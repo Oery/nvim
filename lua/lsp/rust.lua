@@ -1,8 +1,7 @@
-vim.lsp.enable("rust_analyzer")
-
-vim.lsp.config("rust_analyzer", {
+vim.lsp.enable('rust_analyzer')
+vim.lsp.config('rust_analyzer', {
 	settings = {
-		["rust-analyzer"] = {
+		['rust-analyzer'] = {
 			inlayHints = {
 				chainingHints = { enable = false },
 				bindingModeHints = { enable = false },
