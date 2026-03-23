@@ -8,7 +8,6 @@ local ts_objects = require("nvim-treesitter-textobjects")
 
 treesitter.setup({
 	auto_install = true,
-	ensure_installed = { "python" },
 	highlight = { enable = true },
 
 	text_objects = {
