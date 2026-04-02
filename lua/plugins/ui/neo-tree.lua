@@ -16,7 +16,7 @@ local function is_top(path)
 		return 3
 	elseif name:match("%.h$") then
 		return 2
-	elseif name:match("%.new%.c$") then
+	elseif name:match("%_new%.c$") then
 		return 1
 	end
 	return 0
