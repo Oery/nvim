@@ -1,14 +1,13 @@
 vim.pack.add({
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" },
 })
 
-local treesitter = require("nvim-treesitter.configs")
+local treesitter = require("nvim-treesitter")
 local ts_objects = require("nvim-treesitter-textobjects")
 
 treesitter.setup({
 	auto_install = true,
-	highlight = { enable = true },
 
 	text_objects = {
 		select = {
@@ -21,6 +20,12 @@ treesitter.setup({
 			},
 		},
 	},
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	callback = function(args)
+		pcall(vim.treesitter.start, args.buf)
+	end,
 })
 
 vim.g.no_plugin_maps = true
