@@ -11,6 +11,7 @@ conform.setup({
 		},
 	},
 	formatters_by_ft = {
+		lua = { "stylua" },
 		c = { "c_formatter_42" },
 		cpp = { "c_formatter_42" },
 		javascript = { "biome" },
