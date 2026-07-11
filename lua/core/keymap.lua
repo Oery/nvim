@@ -19,12 +19,12 @@ keymap("n", "<leader>e",
 	{ desc = "File tree" }
 )
 
-keymap("n", "<leader>ff",
+keymap("n", "<leader>f",
 	":Telescope find_files<CR>",
 	{ desc = "File picker" }
 )
 
-keymap("n", "<leader>fw",
+keymap("n", "<leader>w",
 	":Telescope live_grep<CR>",
 	{ desc = "Live grep" }
 )
@@ -34,7 +34,7 @@ keymap("n", "<leader>s",
 	{ desc = "Symbols" }
 )
 
-keymap("n", "<leader>ld",
+keymap("n", "<leader>d",
 	":Trouble diagnostics<CR>",
 	{ desc = "Diagnostics" }
 )
@@ -134,3 +134,13 @@ end)
 keymap({ "x", "o" }, "if", function()
 	ts_objects.select_textobject("@function.inner", "textobjects")
 end)
+
+keymap('n', '<C-h>', '<C-w>h', {noremap = true})
+keymap('n', '<C-j>', '<C-w>j', {noremap = true})
+keymap('n', '<C-k>', '<C-w>k', {noremap = true})
+keymap('n', '<C-l>', '<C-w>l', {noremap = true})
+
+keymap('n', '<C-Up>', '<C-w><Up>', {noremap = true})
+keymap('n', '<C-Down>', '<C-w><Down>', {noremap = true})
+keymap('n', '<C-Left>', '<C-w><Left>', {noremap = true})
+keymap('n', '<C-Right>', '<C-w><Right>', {noremap = true})
