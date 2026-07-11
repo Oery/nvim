@@ -9,7 +9,7 @@ require("plugins.telescope")
 
 -- colorschemes
 require("plugins.ui.colorschemes")
-vim.cmd.colorscheme('shade')
+vim.cmd.colorscheme("shade")
 
 -- lsp completion
 require("plugins.ui.blink")
