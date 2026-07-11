@@ -27,8 +27,10 @@ require("plugins.ui.cokeline")
 require("plugins.snacks_nvim.init")
 
 -- mini plugin collection
+require("plugins.mini.ai")
 require("plugins.mini.move")
 require("plugins.mini.pairs")
+require("plugins.mini.surround")
 
 -- lsp loading status
 require("plugins.ui.fidget")
@@ -63,6 +65,9 @@ require("plugins.ui.render-markdown")
 
 -- live rename
 require("plugins.ui.live-rename")
+
+-- dimming
+require("plugins.ui.twilight")
 
 -- rust crates
 require("plugins.rust.crates")
