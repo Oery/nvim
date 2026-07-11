@@ -9,5 +9,6 @@ require("lsp.python")
 
 vim.lsp.enable("qmlls")
 vim.lsp.enable("biome")
-vim.lsp.enable('csharp_ls')
-vim.lsp.enable('clangd')
+vim.lsp.enable("csharp_ls")
+vim.lsp.enable("clangd")
+vim.lsp.enable("nil_ls")
