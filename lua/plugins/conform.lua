@@ -2,7 +2,7 @@
 
 vim.pack.add({ { src = "https://github.com/stevearc/conform.nvim" } })
 
-local conform = require("conform");
+local conform = require("conform")
 
 conform.setup({
 	formatters = {
@@ -13,13 +13,14 @@ conform.setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
 		c = { "c_formatter_42" },
-		cpp = { "c_formatter_42" },
-		javascript = { "biome" },
-		javascriptreact = { "biome" },
-		typescript = { "biome" },
-		typescriptreact = { "biome" },
-		json = { "biome" },
+		-- cpp = { "c_formatter_42" },
+		javascript = { "biome-check" },
+		javascriptreact = { "biome-check" },
+		typescript = { "biome-check" },
+		typescriptreact = { "biome-check" },
+		json = { "biome-check" },
 		python = { "ruff_format", "ruff_fix" },
+		make = { "bake" },
 	},
 	format_on_save = {
 		timeout_ms = 500,
@@ -27,7 +28,4 @@ conform.setup({
 	},
 })
 
-vim.keymap.set("n", "<leader>lf",
-	conform.format,
-	{ desc = "Format buffer" }
-)
+vim.keymap.set("n", "<leader>lf", conform.format, { desc = "Format buffer" })
