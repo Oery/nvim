@@ -17,6 +17,18 @@ vim.opt.fillchars = { eob = " " }
 vim.o.splitkeep = "screen"
 vim.o.clipboard = "unnamedplus"
 
+-- vim.o.cmdheight hides macro start/end messages
+vim.api.nvim_create_autocmd("RecordingEnter", {
+	callback = function()
+		vim.opt.cmdheight = 1
+	end,
+})
+vim.api.nvim_create_autocmd("RecordingLeave", {
+	callback = function()
+		vim.opt.cmdheight = 0
+	end,
+})
+
 ---@type vim.DiagnosticConfig
 local diagnostic_config = {
     signs = {
