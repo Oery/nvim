@@ -4,6 +4,7 @@ local neotree = require('neo-tree')
 
 local top_set = {
 	["main.c"] = true,
+	["main.cpp"] = true,
 	["main.rs"] = true,
 	["mod.rs"] = true,
 	["lib.rs"] = true,
