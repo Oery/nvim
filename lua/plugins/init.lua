@@ -82,6 +82,9 @@ require("plugins.tracking.wakatime")
 -- leetcode
 require("plugins.leetcode")
 
+-- orthodox classes generator
+require("plugins.cpp")
+
 if vim.env.name == "42-env" then
 	-- 42 norm
 	require("plugins.42norm")
