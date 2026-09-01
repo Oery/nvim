@@ -40,8 +40,16 @@ keymap("n", "<leader>d",
 )
 
 keymap("n", "<leader>i", function()
-	require("plugins.cpp").implement_method()
-end, { desc = "Implement C++ method" })
+	require("plugins.cpp").implement_method_with_clangd()
+end, { desc = "Implement C++ method (clangd)" })
+
+keymap("n", "<leader>g", function()
+	require("plugins.cpp").add_getter_for_field()
+end, { desc = "Add C++ getter for field" })
+
+keymap("x", "<leader>g", function()
+	require("plugins.cpp").implement_getters_in_selection()
+end, { desc = "Implement selected C++ getters" })
 
 
 -- snacks
