@@ -39,6 +39,10 @@ keymap("n", "<leader>d",
 	{ desc = "Diagnostics" }
 )
 
+keymap("n", "<leader>i", function()
+	require("plugins.cpp").implement_method()
+end, { desc = "Implement C++ method" })
+
 
 -- snacks
 local snacks = require("snacks")
