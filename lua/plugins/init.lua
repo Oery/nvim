@@ -67,7 +67,7 @@ require("plugins.ui.render-markdown")
 require("plugins.ui.live-rename")
 
 -- dimming
-require("plugins.ui.twilight")
+-- require("plugins.ui.twilight")
 
 -- rust crates
 require("plugins.rust.crates")
