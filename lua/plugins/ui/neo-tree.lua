@@ -1,6 +1,7 @@
 vim.pack.add({ { src = "https://github.com/nvim-neo-tree/neo-tree.nvim" } })
 
 local neotree = require('neo-tree')
+require("plugins.ui.neo-tree-ignore").setup()
 
 local top_set = {
 	["main.c"] = true,
@@ -37,11 +38,16 @@ neotree.setup({
 	},
 	filesystem = {
 		group_empty_dirs = true,
-		filtered_items = { show_hidden_count = false },
-		always_show = {
-			".gitignore",
+		filtered_items = {
+			show_hidden_count = false,
+			-- Cache ignore rules independently of asynchronous Git status updates.
+			hide_gitignored = false,
+			hide_ignored = true,
+			ignore_files = { ".neotreeignore", ".ignore", ".gitignore" },
+			always_show = { ".gitignore" },
 		},
-		async_directory_scan = "never"
+		async_directory_scan = "never",
+		use_libuv_file_watcher = true,
 	},
 	follow_current_file = { enabled = true },
 	sort_function = function(a, b)
