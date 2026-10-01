@@ -38,7 +38,7 @@ return {
 		name = "Launch Cargo binary",
 		type = "codelldb",
 		request = "launch",
-		console = "externalTerminal",
+		terminal = "integrated",
 		program = function()
 			local bin, _ = get_cargo_binary()
 			if bin then

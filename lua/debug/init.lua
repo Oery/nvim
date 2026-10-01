@@ -10,18 +10,23 @@ local dap = require("dap")
 local dvt = require("nvim-dap-virtual-text")
 local dap_view = require("dap-view")
 
-dap.defaults.fallback.external_terminal = {
-	command = "ghostty",
-	args = { "--title=dap-term", "-e" },
-}
-
-dap.listeners.after.launch["resize-dap-term"] = function(_, _)
-	vim.fn.system("hyprctl dispatch resizeactive exact 1200 100%")
-end
-
 dvt.setup({})
 
-dap_view.setup({})
+dap_view.setup({
+	auto_toggle = "keep_terminal",
+	winbar = {
+		default_section = "threads",
+		base_sections = {
+			threads = { label = "Call Stack", keymap = "T" },
+		},
+	},
+	windows = {
+		-- Stack above, program terminal below, in one right-hand panel.
+		position = "right",
+		size = 100,
+		terminal = { position = "below", size = 0.5 },
+	},
+})
 
 dap.adapters.codelldb = require("debug.adapters.codelldb")
 dap.adapters.debugpy = {
@@ -34,6 +39,8 @@ dap.configurations.c = require("debug.configs.cpp")
 dap.configurations.cpp = require("debug.configs.cpp")
 dap.configurations.rust = require("debug.configs.rust")
 dap.configurations.python = require("debug.configs.python")
+
+require("debug.project").setup()
 
 vim.api.nvim_set_hl(0, "DebugSymbol", { fg = "#22863a" })
 vim.fn.sign_define("DapBreakpoint", { text = " ", texthl = "DebugSymbol" })

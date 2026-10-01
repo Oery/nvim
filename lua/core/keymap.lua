@@ -87,8 +87,19 @@ end, { desc = "Close current buffer" })
 local dap = require("dap")
 
 keymap("n", "<leader>1",
-	dap.continue,
-	{ desc = "Continue" }
+	function()
+		if vim.bo.filetype == "c" or vim.bo.filetype == "cpp" then
+			require("debug.project").run()
+		else
+			dap.continue()
+		end
+	end,
+	{ desc = "Debug project / Continue" }
+)
+
+keymap("n", "<leader>!",
+	function() require("debug.project").run_new() end,
+	{ desc = "Set project debug command and run" }
 )
 
 keymap("n", "<leader>2",
