@@ -15,7 +15,12 @@ vim.o.scrolloff = 10
 vim.o.winborder = "rounded"
 vim.opt.fillchars = { eob = " " }
 vim.o.splitkeep = "screen"
-vim.o.clipboard = "unnamedplus"
+-- Clipboard registers need an external provider; asking for one that is not there
+-- makes every yank print "clipboard: No provider".
+local clipboard_bins = { "wl-copy", "xclip", "xsel", "pbcopy", "lemonade", "doitclient", "win32yank.exe" }
+if vim.iter(clipboard_bins):any(function(bin) return vim.fn.executable(bin) == 1 end) then
+	vim.o.clipboard = "unnamedplus"
+end
 
 -- vim.o.cmdheight hides macro start/end messages
 vim.api.nvim_create_autocmd("RecordingEnter", {

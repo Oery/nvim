@@ -1,5 +1,5 @@
 -- vscode like tab system
-vim.pack.add({ { src = "https://github.com/willothy/nvim-cokeline" } })
+vim.pack.add({ { src = "https://github.com/willothy/nvim-cokeline" } }, { confirm = false })
 
 local cokeline = require("cokeline")
 

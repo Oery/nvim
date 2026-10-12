@@ -19,46 +19,16 @@ keymap("n", "<leader>e",
 	{ desc = "File tree" }
 )
 
-keymap("n", "<leader>f",
-	":Telescope find_files<CR>",
-	{ desc = "File picker" }
-)
-
-keymap("n", "<leader>w",
-	":Telescope live_grep<CR>",
-	{ desc = "Live grep" }
-)
-
-keymap("n", "<leader>s",
-	":Telescope lsp_dynamic_workspace_symbols<CR>",
-	{ desc = "Symbols" }
-)
-
 keymap("n", "<leader>d",
-	":Trouble diagnostics<CR>",
+	vim.diagnostic.setloclist,
 	{ desc = "Diagnostics" }
 )
 
-keymap("n", "<leader>i", function()
-	require("plugins.cpp").implement_method_with_clangd()
-end, { desc = "Implement C++ method (clangd)" })
-
-keymap("n", "<leader>g", function()
-	require("plugins.cpp").add_getter_for_field()
-end, { desc = "Add C++ getter for field" })
-
-keymap("x", "<leader>g", function()
-	require("plugins.cpp").implement_getters_in_selection()
-end, { desc = "Implement selected C++ getters" })
-
-
--- snacks
-local snacks = require("snacks")
-
-keymap("n", "<leader>t",
-	function() snacks.terminal() end,
-	{ desc = "Open terminal" }
-)
+keymap("n", "<leader>t", function()
+	vim.cmd("botright 12split")
+	vim.cmd("terminal")
+	vim.cmd("startinsert")
+end, { desc = "Open terminal" })
 
 
 -- cokeline
@@ -78,86 +48,12 @@ keymap("n", "<leader>x", function(_)
 	buffers.get_current():delete()
 
 	if #buffers.get_visible() == 0 then
-		snacks.dashboard.open()
+		vim.cmd("enew")
 	end
 end, { desc = "Close current buffer" })
 
 
--- debugging / dap
-local dap = require("dap")
-
-keymap("n", "<leader>1",
-	function()
-		if vim.bo.filetype == "c" or vim.bo.filetype == "cpp" then
-			require("debug.project").run()
-		else
-			dap.continue()
-		end
-	end,
-	{ desc = "Debug project / Continue" }
-)
-
-keymap("n", "<leader>!",
-	function() require("debug.project").run_new() end,
-	{ desc = "Set project debug command and run" }
-)
-
-keymap("n", "<leader>2",
-	dap.toggle_breakpoint,
-	{ desc = "Toggle Breakpoint" }
-)
-
-keymap("n", "<leader>3",
-	dap.run_to_cursor,
-	{ desc = "Run to Cursor" }
-)
-
-keymap("n", "<leader>4",
-	dap.step_into,
-	{ desc = "Step Into" }
-)
-
-keymap("n", "<leader>5",
-	dap.step_over,
-	{ desc = "Step Over" }
-)
-
-keymap("n", "<leader>6",
-	dap.step_out,
-	{ desc = "Step Out" }
-)
-
-keymap("n", "<leader>-",
-	dap.restart,
-	{ desc = "Restart" }
-)
-
-keymap("n", "<leader>=",
-	dap.terminate,
-	{ desc = "Terminate" }
-)
-
-
--- blink.cmp
-local blink = require("blink.cmp")
-
-keymap("i", "<S-space>",
-	blink.show,
-	{ desc = "Open Completion" }
-)
-
-
--- treesitter objects
-local ts_objects = require("nvim-treesitter-textobjects.select")
-
-keymap({ "x", "o" }, "af", function()
-	ts_objects.select_textobject("@function.outer", "textobjects")
-end)
-
-keymap({ "x", "o" }, "if", function()
-	ts_objects.select_textobject("@function.inner", "textobjects")
-end)
-
+-- window navigation
 keymap('n', '<C-h>', '<C-w>h', {noremap = true})
 keymap('n', '<C-j>', '<C-w>j', {noremap = true})
 keymap('n', '<C-k>', '<C-w>k', {noremap = true})

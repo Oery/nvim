@@ -1,4 +1,4 @@
-vim.pack.add({ { src = "https://github.com/nvim-neo-tree/neo-tree.nvim" } })
+vim.pack.add({ { src = "https://github.com/nvim-neo-tree/neo-tree.nvim" } }, { confirm = false })
 
 local neotree = require('neo-tree')
 require("plugins.ui.neo-tree-ignore").setup()
