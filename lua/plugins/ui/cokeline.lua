@@ -1,10 +1,5 @@
 -- vscode like tab system
-local plugin = require("plugins.loader")
-
-local cokeline = plugin.load({ src = "https://github.com/willothy/nvim-cokeline" }, "cokeline")
-if not cokeline then
-	return
-end
+local cokeline = require("cokeline")
 
 cokeline.setup({
 	show_if_buffers_are_at_least = 2,

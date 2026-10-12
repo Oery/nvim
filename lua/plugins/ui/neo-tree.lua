@@ -1,11 +1,6 @@
-local plugin = require("plugins.loader")
-
-local neotree = plugin.load({ src = "https://github.com/nvim-neo-tree/neo-tree.nvim" }, "neo-tree")
-if not neotree then
-	return
-end
-
 require("plugins.ui.neo-tree-ignore").setup()
+
+local neotree = require('neo-tree')
 
 local top_set = {
 	["main.c"] = true,

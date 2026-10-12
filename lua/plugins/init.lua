@@ -1,55 +1,27 @@
-local plugin = require("plugins.loader")
+-- The plugins live in `pack/lite/start` (see `:h packages`), so Neovim puts
+-- them on 'runtimepath' by itself: there is no plugin manager, no lockfile and
+-- no download involved.
+--
+-- colorscheme
+require("plugins.ui.colorschemes")
 
--- Everything that needs the plugins to be on disk.
-local function configure()
-	plugin.start()
+-- bufline
+require("plugins.ui.cokeline")
 
-	-- dependencies
-	require("plugins.ui.plenary")
-	require("plugins.ui.nui")
+-- mini plugin collection
+require("plugins.mini.ai")
+require("plugins.mini.move")
+require("plugins.mini.pairs")
+require("plugins.mini.surround")
 
-	-- colorscheme (applies itself)
-	require("plugins.ui.colorschemes")
+-- file explorer
+require("plugins.ui.neo-tree")
 
-	-- file icons
-	require("plugins.ui.nvim-web-devicons")
+-- statusline
+require("plugins.ui.lualine")
 
-	-- bufline
-	require("plugins.ui.cokeline")
+-- indentation
+require("plugins.qol.guess-indent")
 
-	-- mini plugin collection
-	require("plugins.mini.ai")
-	require("plugins.mini.move")
-	require("plugins.mini.pairs")
-	require("plugins.mini.surround")
-
-	-- file explorer
-	require("plugins.ui.neo-tree")
-
-	-- statusline
-	require("plugins.ui.lualine")
-
-	-- indentation
-	require("plugins.qol.guess-indent")
-
-	-- autoclose
-	require("plugins.qol.autoclose")
-
-	-- keybindings
-	require("plugins.ui.which-key")
-
-	-- anything that could not be loaded is reported once, here
-	plugin.report()
-
-	-- keymaps that need a plugin
-	require("core.keymap").plugin_keymaps()
-end
-
--- Plugins still have to be downloaded: Nvim does not draw the screen while
--- `init.lua` runs, so the install would look like a freeze. Let the editor come
--- up first and do the work on `VimEnter`, where the progress is visible.
-if plugin.pending() > 0 then
-	vim.api.nvim_create_autocmd("VimEnter", { once = true, callback = configure })
-else
-	configure()
-end
+-- keybindings
+require("plugins.ui.which-key")

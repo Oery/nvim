@@ -1,0 +1,83 @@
+[env]
+NEOTREE_LUARC = ".luarc.json"
+MISE_BACKENDS_NEOVIM = "aqua:neovim/neovim"
+
+[tools]
+lua-language-server = "3"
+tree-sitter = "latest"
+
+[tasks.test]
+run = """
+nvim --headless --noplugin -u tests/mininit.lua -c "lua require('plenary.test_harness').test_directory('tests/neo-tree/', {minimal_init='tests/mininit.lua',sequential=vim.fn.has('win32')==1})"
+"""
+
+[tasks.test-docker]
+run = [
+	"docker build -t neo-tree .",
+	"docker run --rm neo-tree mise test"
+]
+
+[tasks.format]
+run = "stylua --glob '*.lua' --glob '!defaults.lua' ."
+
+# https://mise.jdx.dev/dev-tools/backends/github.html#multiple-assets-from-the-same-release
+[tool_alias]
+emmylua_check = "github:EmmyLuaLs/emmylua-analyzer-rust"
+emmylua_ls = "github:EmmyLuaLs/emmylua-analyzer-rust"
+
+[tools.emmylua_check]
+version = "latest"
+matching = "emmylua_check"
+rename_exe = "emmylua_check"
+
+[tools.emmylua_ls]
+version = "latest"
+matching = "emmylua_ls"
+rename_exe = "emmylua_ls"
+
+[bootstrap.repos]
+".dependencies/image.nvim" = { url = "https://github.com/3rd/image.nvim" }
+".dependencies/snacks.nvim" = { url = "https://github.com/folke/snacks.nvim" }
+".dependencies/nui.nvim" = { url = "https://github.com/MunifTanjim/nui.nvim" }
+".dependencies/nvim-web-devicons" = { url = "https://github.com/nvim-tree/nvim-web-devicons" }
+".dependencies/plenary.nvim" = { url = "https://github.com/nvim-lua/plenary.nvim" }
+".dependencies/nvim-window-picker" = { url = "https://github.com/s1n7ax/nvim-window-picker" }
+".dependencies/nvim-treesitter" = { url = "https://github.com/nvim-treesitter/nvim-treesitter" }
+
+[tasks.luals-check]
+run = """
+#!/usr/bin/env bash
+VIMRUNTIME_PATH=$(nvim --clean --headless --cmd 'lua io.write(vim.env.VIMRUNTIME)' --cmd 'qa')
+VIMRUNTIME="${VIMRUNTIME_PATH}" lua-language-server --configpath=$NEOTREE_LUARC --check=.
+"""
+run_windows = [
+	{ task = "luals-check-powershell" }
+]
+[tasks.luals-check-powershell]
+shell = "powershell -NoProfile -Command"
+run_windows = """
+$env:VIMRUNTIME = (nvim --clean --headless --cmd 'lua io.write(vim.env.VIMRUNTIME)' --cmd 'qa')
+lua-language-server --configpath=$env:NEOTREE_LUARC --check .
+"""
+
+[tasks.emmylua-check]
+run = """
+#!/usr/bin/env bash
+VIMRUNTIME_PATH=$(nvim --clean --headless --cmd 'lua io.write(vim.env.VIMRUNTIME)' --cmd 'quit')
+VIMRUNTIME="${VIMRUNTIME_PATH}" emmylua_check -c $NEOTREE_LUARC -i ".dependencies/**" -- .
+"""
+run_windows = [
+  { task = "emmylua-check-powershell" }
+]
+[tasks.emmylua-check-powershell]
+shell = "powershell -NoProfile -Command"
+run = """
+$env:VIMRUNTIME = (nvim --clean --headless --cmd 'lua io.write(vim.env.VIMRUNTIME)' --cmd 'quit')
+$env:PWD = Get-Location
+emmylua_check -c $env:NEOTREE_LUARC -i ".dependencies/**" -- .
+"""
+
+[tasks.clean]
+run = [
+  "rm {{vars.deps_dir}} -rf"
+]

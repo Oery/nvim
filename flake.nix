@@ -15,11 +15,8 @@
         devShells.default = pkgs.mkShell {
           name = "neovim";
 
-          packages = with pkgs; [
+          packages = [
             inputs.neovim-nightly.packages.${system}.neovim
-
-            # only needed once, to download the plugins
-            git
           ];
         };
       }

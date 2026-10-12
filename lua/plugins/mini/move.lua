@@ -1,11 +1,4 @@
-local plugin = require("plugins.loader")
-
-local move = plugin.load({ src = "https://github.com/nvim-mini/mini.nvim" }, "mini.move")
-if not move then
-	return
-end
-
-move.setup({
+require("mini.move").setup({
 	mappings = {
 		-- yes, i use arrow keys
 		left = '<M-left>',
