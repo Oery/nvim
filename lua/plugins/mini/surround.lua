@@ -1,5 +1,8 @@
-vim.pack.add({ { src = "https://github.com/nvim-mini/mini.nvim" } }, { confirm = false })
+local plugin = require("plugins.loader")
 
-local surround = require("mini.surround")
+local surround = plugin.load({ src = "https://github.com/nvim-mini/mini.nvim" }, "mini.surround")
+if not surround then
+	return
+end
 
 surround.setup()

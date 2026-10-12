@@ -1,6 +1,10 @@
-vim.pack.add({ { src = "https://github.com/nvim-neo-tree/neo-tree.nvim" } }, { confirm = false })
+local plugin = require("plugins.loader")
 
-local neotree = require('neo-tree')
+local neotree = plugin.load({ src = "https://github.com/nvim-neo-tree/neo-tree.nvim" }, "neo-tree")
+if not neotree then
+	return
+end
+
 require("plugins.ui.neo-tree-ignore").setup()
 
 local top_set = {

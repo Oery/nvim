@@ -1,1 +1,1 @@
-vim.pack.add({ { src = "https://github.com/nvim-tree/nvim-web-devicons" } }, { confirm = false })
+require("plugins.loader").load({ src = "https://github.com/nvim-tree/nvim-web-devicons" }, "nvim-web-devicons")

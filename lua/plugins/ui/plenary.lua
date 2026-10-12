@@ -1,1 +1,1 @@
-vim.pack.add({ { src = "https://github.com/nvim-lua/plenary.nvim" } }, { confirm = false })
+require("plugins.loader").load({ src = "https://github.com/nvim-lua/plenary.nvim" }, "plenary")

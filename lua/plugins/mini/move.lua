@@ -1,6 +1,9 @@
-vim.pack.add({ { src = "https://github.com/nvim-mini/mini.nvim" } }, { confirm = false })
+local plugin = require("plugins.loader")
 
-local move = require("mini.move")
+local move = plugin.load({ src = "https://github.com/nvim-mini/mini.nvim" }, "mini.move")
+if not move then
+	return
+end
 
 move.setup({
 	mappings = {

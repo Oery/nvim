@@ -2,9 +2,8 @@
 require("plugins.ui.plenary")
 require("plugins.ui.nui")
 
--- colorscheme
+-- colorscheme (applies itself)
 require("plugins.ui.colorschemes")
-vim.cmd.colorscheme("shade")
 
 -- file icons
 require("plugins.ui.nvim-web-devicons")
@@ -32,3 +31,6 @@ require("plugins.qol.autoclose")
 
 -- keybindings
 require("plugins.ui.which-key")
+
+-- anything that could not be loaded is reported once, here
+require("plugins.loader").report()

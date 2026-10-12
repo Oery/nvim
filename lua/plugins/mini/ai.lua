@@ -1,5 +1,8 @@
-vim.pack.add({ { src = "https://github.com/nvim-mini/mini.nvim" } }, { confirm = false })
+local plugin = require("plugins.loader")
 
-local ai = require("mini.ai")
+local ai = plugin.load({ src = "https://github.com/nvim-mini/mini.nvim" }, "mini.ai")
+if not ai then
+	return
+end
 
 ai.setup()

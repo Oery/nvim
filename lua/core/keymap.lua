@@ -14,11 +14,6 @@ keymap("n", "<leader>o",
 	{ desc = "Source file" }
 )
 
-keymap("n", "<leader>e",
-	":Neotree reveal right<CR>",
-	{ desc = "File tree" }
-)
-
 keymap("n", "<leader>d",
 	vim.diagnostic.setloclist,
 	{ desc = "Diagnostics" }
@@ -31,26 +26,36 @@ keymap("n", "<leader>t", function()
 end, { desc = "Open terminal" })
 
 
--- cokeline
-local buffers = require("cokeline.buffers")
+local plugin = require("plugins.loader")
 
-keymap("n", "<S-Tab>",
-	"<Plug>(cokeline-focus-prev)",
-	{ silent = true, desc = "Focus previous tab" }
-)
+if plugin.has("neo-tree") then
+	keymap("n", "<leader>e",
+		":Neotree reveal right<CR>",
+		{ desc = "File tree" }
+	)
+end
 
-keymap("n", "<Tab>",
-	"<Plug>(cokeline-focus-next)",
-	{ silent = true, desc = "Focus next tab" }
-)
+if plugin.has("cokeline") then
+	local buffers = require("cokeline.buffers")
 
-keymap("n", "<leader>x", function(_)
-	buffers.get_current():delete()
+	keymap("n", "<S-Tab>",
+		"<Plug>(cokeline-focus-prev)",
+		{ silent = true, desc = "Focus previous tab" }
+	)
 
-	if #buffers.get_visible() == 0 then
-		vim.cmd("enew")
-	end
-end, { desc = "Close current buffer" })
+	keymap("n", "<Tab>",
+		"<Plug>(cokeline-focus-next)",
+		{ silent = true, desc = "Focus next tab" }
+	)
+
+	keymap("n", "<leader>x", function(_)
+		buffers.get_current():delete()
+
+		if #buffers.get_visible() == 0 then
+			vim.cmd("enew")
+		end
+	end, { desc = "Close current buffer" })
+end
 
 
 -- window navigation
