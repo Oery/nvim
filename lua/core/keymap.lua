@@ -1,4 +1,5 @@
 local keymap = vim.keymap.set
+local M = {}
 
 -- set leader to spacebar
 vim.g.mapleader = " "
@@ -26,38 +27,6 @@ keymap("n", "<leader>t", function()
 end, { desc = "Open terminal" })
 
 
-local plugin = require("plugins.loader")
-
-if plugin.has("neo-tree") then
-	keymap("n", "<leader>e",
-		":Neotree reveal right<CR>",
-		{ desc = "File tree" }
-	)
-end
-
-if plugin.has("cokeline") then
-	local buffers = require("cokeline.buffers")
-
-	keymap("n", "<S-Tab>",
-		"<Plug>(cokeline-focus-prev)",
-		{ silent = true, desc = "Focus previous tab" }
-	)
-
-	keymap("n", "<Tab>",
-		"<Plug>(cokeline-focus-next)",
-		{ silent = true, desc = "Focus next tab" }
-	)
-
-	keymap("n", "<leader>x", function(_)
-		buffers.get_current():delete()
-
-		if #buffers.get_visible() == 0 then
-			vim.cmd("enew")
-		end
-	end, { desc = "Close current buffer" })
-end
-
-
 -- window navigation
 keymap('n', '<C-h>', '<C-w>h', {noremap = true})
 keymap('n', '<C-j>', '<C-w>j', {noremap = true})
@@ -68,3 +37,40 @@ keymap('n', '<C-Up>', '<C-w><Up>', {noremap = true})
 keymap('n', '<C-Down>', '<C-w><Down>', {noremap = true})
 keymap('n', '<C-Left>', '<C-w><Left>', {noremap = true})
 keymap('n', '<C-Right>', '<C-w><Right>', {noremap = true})
+
+
+-- Needs a plugin, so it is defined once the plugins had their chance to load.
+function M.plugin_keymaps()
+	local plugin = require("plugins.loader")
+
+	if plugin.has("neo-tree") then
+		keymap("n", "<leader>e",
+			":Neotree reveal right<CR>",
+			{ desc = "File tree" }
+		)
+	end
+
+	if plugin.has("cokeline") then
+		local buffers = require("cokeline.buffers")
+
+		keymap("n", "<S-Tab>",
+			"<Plug>(cokeline-focus-prev)",
+			{ silent = true, desc = "Focus previous tab" }
+		)
+
+		keymap("n", "<Tab>",
+			"<Plug>(cokeline-focus-next)",
+			{ silent = true, desc = "Focus next tab" }
+		)
+
+		keymap("n", "<leader>x", function(_)
+			buffers.get_current():delete()
+
+			if #buffers.get_visible() == 0 then
+				vim.cmd("enew")
+			end
+		end, { desc = "Close current buffer" })
+	end
+end
+
+return M

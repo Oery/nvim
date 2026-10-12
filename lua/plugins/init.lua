@@ -1,36 +1,55 @@
--- dependencies
-require("plugins.ui.plenary")
-require("plugins.ui.nui")
+local plugin = require("plugins.loader")
 
--- colorscheme (applies itself)
-require("plugins.ui.colorschemes")
+-- Everything that needs the plugins to be on disk.
+local function configure()
+	plugin.start()
 
--- file icons
-require("plugins.ui.nvim-web-devicons")
+	-- dependencies
+	require("plugins.ui.plenary")
+	require("plugins.ui.nui")
 
--- bufline
-require("plugins.ui.cokeline")
+	-- colorscheme (applies itself)
+	require("plugins.ui.colorschemes")
 
--- mini plugin collection
-require("plugins.mini.ai")
-require("plugins.mini.move")
-require("plugins.mini.pairs")
-require("plugins.mini.surround")
+	-- file icons
+	require("plugins.ui.nvim-web-devicons")
 
--- file explorer
-require("plugins.ui.neo-tree")
+	-- bufline
+	require("plugins.ui.cokeline")
 
--- statusline
-require("plugins.ui.lualine")
+	-- mini plugin collection
+	require("plugins.mini.ai")
+	require("plugins.mini.move")
+	require("plugins.mini.pairs")
+	require("plugins.mini.surround")
 
--- indentation
-require("plugins.qol.guess-indent")
+	-- file explorer
+	require("plugins.ui.neo-tree")
 
--- autoclose
-require("plugins.qol.autoclose")
+	-- statusline
+	require("plugins.ui.lualine")
 
--- keybindings
-require("plugins.ui.which-key")
+	-- indentation
+	require("plugins.qol.guess-indent")
 
--- anything that could not be loaded is reported once, here
-require("plugins.loader").report()
+	-- autoclose
+	require("plugins.qol.autoclose")
+
+	-- keybindings
+	require("plugins.ui.which-key")
+
+	-- anything that could not be loaded is reported once, here
+	plugin.report()
+
+	-- keymaps that need a plugin
+	require("core.keymap").plugin_keymaps()
+end
+
+-- Plugins still have to be downloaded: Nvim does not draw the screen while
+-- `init.lua` runs, so the install would look like a freeze. Let the editor come
+-- up first and do the work on `VimEnter`, where the progress is visible.
+if plugin.pending() > 0 then
+	vim.api.nvim_create_autocmd("VimEnter", { once = true, callback = configure })
+else
+	configure()
+end
